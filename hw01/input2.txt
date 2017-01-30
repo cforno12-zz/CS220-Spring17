@@ -1,0 +1,3 @@
+fib 25
+diffSq 25 5
+fib 10
