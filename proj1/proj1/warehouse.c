@@ -8,7 +8,6 @@ int main(int argc, char ** argv) {
 	while(1==scanf("%d",&bin)) {
 		if (-1==findSlot(bin)) {
 			// getBin parameter should have a number between 0-3
-			//did this update to github??
 			getBin(bin,0);
 		}
 		getWidget(bin);
