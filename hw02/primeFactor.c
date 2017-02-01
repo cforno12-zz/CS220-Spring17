@@ -40,5 +40,3 @@ int nextFactor(int n) {
 	}
 	return 1;
 }
-
-//sudo security add-trust -d -r trustRoot -p basic -p codeSign -k /Library/Keychains/System.keychain ~/Desktop/gdb_codesign.cer
