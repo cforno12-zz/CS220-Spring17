@@ -33,6 +33,15 @@ int main(int argc, char **argv) {
 
 int nextFactor(int n) {
 	/* Insert code to return the next prime factor in n here */
-	
+	int f = 2;
+	while(f > 0){
+		if(n%f == 0){
+			return f;
+		} else {
+			f++;
+		}
+	}
 	return 1;
 }
+
+//sudo security add-trust -d -r trustRoot -p basic -p codeSign -k /Library/Keychains/System.keychain ~/Desktop/gdb_codesign.cer

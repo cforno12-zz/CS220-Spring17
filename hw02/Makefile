@@ -4,6 +4,7 @@ test_factorial : factorial
 	./factorial
 
 test_primeFactor : primeFactor
+	#Original: 35460
 	./primeFactor 35460
 
 factorial : factorial.c
