@@ -33,12 +33,9 @@ int main(int argc, char **argv) {
 
 int nextFactor(int n) {
 	/* Insert code to return the next prime factor in n here */
-	int f = 2;
-	while(f > 0){
+	for (int f = 2; f <= n; f++) {
 		if(n%f == 0){
 			return f;
-		} else {
-			f++;
 		}
 	}
 	return 1;
