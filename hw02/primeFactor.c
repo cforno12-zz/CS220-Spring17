@@ -33,6 +33,6 @@ int main(int argc, char **argv) {
 
 int nextFactor(int n) {
 	/* Insert code to return the next prime factor in n here */
+	
 	return 1;
 }
-
