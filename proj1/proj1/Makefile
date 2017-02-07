@@ -1,7 +1,7 @@
 SRC_FILES = warehouse.c slots.c slots.h Makefile
 
 test : warehouse
-	./warehouse <order1.txt
+	./warehouse <order2.txt
 
 debug : warehouse
 	gdb warehouse
