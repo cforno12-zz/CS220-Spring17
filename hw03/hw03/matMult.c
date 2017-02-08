@@ -8,10 +8,19 @@
 #define MAXCOLS 64
 #define MAXRAND 100
 
+//Global variables
 int matA[MAXROWS][MAXCOLS];
 int matB[MAXROWS][MAXCOLS];
 int matC[MAXROWS][MAXCOLS];
 
+/*
+* Purpose of this program is to provide a way to set the values of matA and matB
+* and then calculate the value of matC using matrix multiplication, where
+* matC = matA x matB.
+*/
+
+
+//Three ways of setting matrixes A and B. The functions listed below.
 void setA_ID(int rows,int cols); // Set matA to rows x cols ID matrix
 void setB_ID(int rows,int cols); // Set matB to rows x cols ID matrix
 void setA_Rand(int rows,int cols); // Set matA to rows x cols random #
@@ -81,6 +90,21 @@ int main(int argc, char **argv) {
 	Sub-functions go here
 ----------------------------------------------------------------------------------------------*/
 
+void setA_ID(int rows, int cols){
+	int row;
+	int col;
+	for(row=0;row<rows;row++){
+		for(col=0;col<cols;col++){
+			if(row == col){
+				matA[row][col] = 1;
+			} else {
+				matA[row][col] = 0;
+			}
+		}
+	}
+	printMatrix("A",rows,cols,matA);
+}
+
 void setA_Rand(int rows,int cols) {
 	int row;
 	int col;
@@ -105,8 +129,69 @@ void setA_Stdin(int rows,int cols) {
 	printMatrix("A",rows,cols,matA);
 }
 
-void printMatrix(char name[], int rows, int cols,
-	int matrix[MAXROWS][MAXCOLS]) {
+void setB_ID(int rows, int cols){
+	int row;
+	int col;
+	for(row=0;row<rows;row++){
+		for(col=0;col<cols;col++){
+			if(row == col){
+				matB[row][col] = 1;
+			} else {
+				matB[row][col] = 0;
+			}
+		}
+	}
+	printMatrix("B",rows,cols,matB);
+}
+
+void setB_Rand(int rows,int cols) {
+	int row;
+	int col;
+	for(row=0;row<rows;row++) {
+		for(col=0;col<cols;col++) {
+			matB[row][col]=rand()%MAXRAND;
+		}
+	}
+	printMatrix("B",rows,cols,matB);
+}
+
+void setB_Stdin(int rows,int cols) {
+	int row;
+	int col;
+	int nextNum;
+	for(row=0;row<rows;row++) {
+		for(col=0;col<cols;col++) {
+			assert(1==scanf("%d ",&nextNum));
+			matB[row][col]=nextNum;
+		}
+	}
+	printMatrix("B",rows,cols,matB);
+}
+
+void setC_Prod(int a,int ab, int b){
+	// a == rows of A
+	// ab == columns of A and rows of B
+	// b == columns of B
+	// these variables keep track of the rows and columns of all threee matrices
+	int sum = 0;
+	int i; //init of rows of A
+	int j; // init columns of b
+	int k; // init of ab from parameters
+	for (i = 0; i < a; i++) {
+      for (j = 0; j < b; j++) {
+		//accessing Cmat at this point
+        for (k = 0; k < ab; k++) {
+			//k is number of times the elements have to be muiltiped together
+          sum += matA[i][k] * matB[k][j];
+        }
+        matC[i][j] = sum;
+        sum = 0;
+      }
+    }
+	printMatrix("AxB",a,b,matC);
+}
+
+void printMatrix(char name[], int rows, int cols,  int matrix[MAXROWS][MAXCOLS]) {
 	assert(rows<=MAXROWS);
 	assert(cols<=MAXCOLS);
 	int row;
