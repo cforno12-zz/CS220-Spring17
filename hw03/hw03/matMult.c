@@ -28,6 +28,7 @@ void setB_Rand(int rows,int cols); // Set matB to rows x cols random #
 void setA_Stdin(int rows,int cols); // Set matA to numbers from stdin
 void setB_Stdin(int rows,int cols); // Set matB to numbers from stdin
 void setC_Prod(int ra,int carb, int cb); // Set matC to matA x matB
+int multHelper(int a, int ab, int b);
 
 void printMatrix(char name[], int row, int cols,
 	int matrix[MAXROWS][MAXCOLS]); // Print the matrix specified
@@ -172,7 +173,6 @@ void setC_Prod(int a,int ab, int b){
 	// a == rows of A
 	// ab == columns of A and rows of B
 	// b == columns of B
-	// these variables keep track of the rows and columns of all threee matrices
 	int sum = 0;
 	int i; //init of rows of A
 	int j; // init columns of b
@@ -182,13 +182,19 @@ void setC_Prod(int a,int ab, int b){
 		//accessing Cmat at this point
         for (k = 0; k < ab; k++) {
 			//k is number of times the elements have to be muiltiped together
-          sum += matA[i][k] * matB[k][j];
+          sum += multHelper(i,k,j);
         }
         matC[i][j] = sum;
         sum = 0;
       }
     }
 	printMatrix("AxB",a,b,matC);
+}
+
+int multHelper(int a, int ab, int b){
+	int varA = matA[a][ab];
+	int varB = matB[ab][b];
+	return varA * varB;
 }
 
 void printMatrix(char name[], int rows, int cols,  int matrix[MAXROWS][MAXCOLS]) {
