@@ -27,7 +27,7 @@ void setA_Rand(int rows,int cols); // Set matA to rows x cols random #
 void setB_Rand(int rows,int cols); // Set matB to rows x cols random #
 void setA_Stdin(int rows,int cols); // Set matA to numbers from stdin
 void setB_Stdin(int rows,int cols); // Set matB to numbers from stdin
-void setC_Prod(int ra,int carb, int cb); // Set matC to matA x matB
+void setC_Prod(int a,int ab, int b); // Set matC to matA x matB
 int multHelper(int a, int ab, int b);
 
 void printMatrix(char name[], int row, int cols,
