@@ -30,8 +30,13 @@ int main(int argc, char ** argv) {
 				index++;
 			} else {
 				//set the index to the least likely number to appear in the future
-				least = leastLikely();
-				index =findSlot(least);
+				do{
+					least = leastLikely();
+					index = findSlot(least);
+					if(index == -1){
+						bins[least]--;
+					}
+				} while(index == -1);
 			}
 		}
 		getWidget(bin);
