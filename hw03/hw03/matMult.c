@@ -192,9 +192,7 @@ void setC_Prod(int a,int ab, int b){
 }
 
 int multHelper(int a, int ab, int b){
-	int varA = matA[a][ab];
-	int varB = matB[ab][b];
-	return varA * varB;
+	return matA[a][ab] * matB[ab][b];
 }
 
 void printMatrix(char name[], int rows, int cols,  int matrix[MAXROWS][MAXCOLS]) {

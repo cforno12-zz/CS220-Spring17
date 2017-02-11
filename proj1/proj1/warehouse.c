@@ -2,12 +2,15 @@
 #include "slots.h"
 #include <stdio.h>
 
+//global variables
+int bins [100]; //array to keep track of the input of the order from the customer.
+
 int leastLikely(int binArr []);
 
 int main(int argc, char ** argv) {
 	int bin;
 	int index = 0;
-	int bins [100];
+	//initialize bins array to 0.
 	for (int i = 0; i < 100; i++) {
 		bins[i] = 0;
 	}
@@ -15,11 +18,10 @@ int main(int argc, char ** argv) {
 	//as long as there are more bin numbers on the order for the kit....continunes onto the while loop
 	//bin is initialized with the scanf function
 	while(1 == scanf("%d",&bin)) {
-		bins[bin]++;
-		// this line of code is counting all of the widgets in the order.
+		bins[bin]++; // this line of code is counting all of the widgets in the order.
+
 		if (-1==findSlot(bin)) {
 			// getBin index should have a number between 0-3
-			//make the program choose a bin to return 'intelligently'
 			//TODO: Send bck the bin that is least likely to be needed again in the near future
 			getBin(bin,index);
 			for (int i = 0; i < 8; i++) {
@@ -42,14 +44,15 @@ int main(int argc, char ** argv) {
 	return 0;
 }
 //TODO: Make a function that calculates the least likely number to be in the future
-int leastLikely(int binArr []){
+int leastLikely(){
 	int index = 0;
 	int value = 0;
 	for (int i = 0; i < 100; i++) {
-		if(binArr[i] != 0 && binArr[i] >= value){
-			value = binArr[i];
+		if(bins[i] != 0 && bins[i] >= value){
+			value = bins[i];
 			index = i;
 		}
 	}
+	bins[index] = 0;
 	return index;
 }
