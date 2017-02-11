@@ -5,11 +5,12 @@
 //global variables
 int bins [100]; //array to keep track of the input of the order from the customer.
 
-int leastLikely(int binArr []);
+int leastLikely();
 
 int main(int argc, char ** argv) {
 	int bin;
 	int index = 0;
+	int least;
 	//initialize bins array to 0.
 	for (int i = 0; i < 100; i++) {
 		bins[i] = 0;
@@ -24,15 +25,12 @@ int main(int argc, char ** argv) {
 			// getBin index should have a number between 0-3
 			//TODO: Send bck the bin that is least likely to be needed again in the near future
 			getBin(bin,index);
-			for (int i = 0; i < 8; i++) {
-				printf("#%i:%i ",i,bins[i]);
-			}
-			printf("%i\n", leastLikely(bins));
 			if(index < 3){
 				index++;
 			} else {
 				//set the index to the least likely number to appear in the future
-				//leastLikely(bins);
+				least = leastLikely();
+				index =findSlot(least);
 			}
 		}
 		getWidget(bin);
@@ -46,13 +44,12 @@ int main(int argc, char ** argv) {
 //TODO: Make a function that calculates the least likely number to be in the future
 int leastLikely(){
 	int index = 0;
-	int value = 0;
+	int value = +2147483647;
 	for (int i = 0; i < 100; i++) {
-		if(bins[i] != 0 && bins[i] >= value){
+		if(bins[i] != 0 && bins[i] < value){
 			value = bins[i];
 			index = i;
 		}
 	}
-	bins[index] = 0;
 	return index;
 }
