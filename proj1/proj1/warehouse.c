@@ -11,8 +11,9 @@ int main(int argc, char ** argv) {
 	int bin;
 	int index = 0;
 	int least;
+	int i;
 	//initialize bins array to 0.
-	for (int i = 0; i < 100; i++) {
+	for (i = 0; i < 100; i++) {
 		bins[i] = 0;
 	}
 	initSlots();
@@ -45,7 +46,8 @@ int main(int argc, char ** argv) {
 int leastLikely(){
 	int index = 0;
 	int value = +2147483647;
-	for (int i = 0; i < 100; i++) {
+	int i;
+	for (i = 0; i < 100; i++) {
 		if(bins[i] != 0 && bins[i] < value){
 			value = bins[i];
 			index = i;
