@@ -18,22 +18,37 @@ int main(int argc, char ** argv) {
 	}
 	initSlots();
 	//as long as there are more bin numbers on the order for the kit....continunes onto the while loop
-	//bin is initialized with the scanf function
 	while(1 == scanf("%d",&bin)) {
-		bins[bin]++; // this line of code is counting all of the widgets in the order.
-
+		bins[bin]++;
+		/*
+		* The bins array is a frequency table updating every time there an order is inputted.
+		*/
+		//this condition checks to see if the given bin is already in the workbench
 		if (-1==findSlot(bin)) {
-			// getBin index should have a number between 0-3
-			//TODO: Send bck the bin that is least likely to be needed again in the near future
+			int first = 0;
 			getBin(bin,index);
-			if(index < 3){
+			if(index < 3 && first == 0){
 				index++;
 			} else {
+				//printf("This bin isn't in the workbench: %i\n", bin);
+				first = 1;
+				for (i = 0; i < 100; i++) {
+					if(bins[i]!= 0){
+						//printf("%i:%i ", i,bins[i]);
+					}
+				}
+				//printf("\n");
 				//set the index to the least likely number to appear in the future
 				do{
 					least = leastLikely();
 					index = findSlot(least);
+					/*
+					* if the least likely widget is returned, but is not in the workbench,
+					* then go back to the frequency table and decrease the frequency value for that
+					* widget. This will keep going until it returns a widget that is in the workbench.
+					*/
 					if(index == -1){
+						//TODO: improve on this....
 						bins[least]--;
 					}
 				} while(index == -1);
@@ -42,7 +57,7 @@ int main(int argc, char ** argv) {
 		getWidget(bin);
 	}
 	/*for (int i = 0; i < 100; i++) {
-		printf("%i\n", bins[i]);
+		//printf("%i\n", bins[i]);
 	}*/
 	printEarnings();
 	return 0;
@@ -56,6 +71,7 @@ int leastLikely(){
 		if(bins[i] != 0 && bins[i] < value){
 			value = bins[i];
 			index = i;
+			//printf("%d\n", i);
 		}
 	}
 	return index;
