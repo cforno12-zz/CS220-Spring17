@@ -38,12 +38,12 @@ int main(int argc, char ** argv) {
 					index = findSlot(least);
 					/*
 					* if the least likely widget is returned, but is not in the workbench,
-					* then go back to the frequency table and decrease the frequency value for that
+					* then go back to the frequency table and increased the frequency value for that
 					* widget. This will keep going until it returns a widget that is in the workbench.
 					*/
 					if(index == -1){
 						//TODO: improve on this....
-						bins[least]--;
+						bins[least]++;
 					}
 				} while(index == -1);
 				getBin(bin,index);
