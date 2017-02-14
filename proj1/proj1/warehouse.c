@@ -17,6 +17,8 @@ int main(int argc, char ** argv) {
 		bins[i] = 0;
 	}
 	initSlots();
+	//this var acts as a boolean to indicate if it is popualting the workbench the first time around
+	int first = 0;
 	//as long as there are more bin numbers on the order for the kit....continunes onto the while loop
 	while(1 == scanf("%d",&bin)) {
 		bins[bin]++;
@@ -25,19 +27,11 @@ int main(int argc, char ** argv) {
 		*/
 		//this condition checks to see if the given bin is already in the workbench
 		if (-1==findSlot(bin)) {
-			int first = 0;
-			getBin(bin,index);
-			if(index < 3 && first == 0){
+			if(index <= 3 && first == 0){
+				getBin(bin,index);
 				index++;
 			} else {
-				//printf("This bin isn't in the workbench: %i\n", bin);
 				first = 1;
-				for (i = 0; i < 100; i++) {
-					if(bins[i]!= 0){
-						//printf("%i:%i ", i,bins[i]);
-					}
-				}
-				//printf("\n");
 				//set the index to the least likely number to appear in the future
 				do{
 					least = leastLikely();
@@ -52,17 +46,14 @@ int main(int argc, char ** argv) {
 						bins[least]--;
 					}
 				} while(index == -1);
+				getBin(bin,index);
 			}
 		}
 		getWidget(bin);
 	}
-	/*for (int i = 0; i < 100; i++) {
-		//printf("%i\n", bins[i]);
-	}*/
 	printEarnings();
 	return 0;
 }
-//TODO: Make a function that calculates the least likely number to be in the future
 int leastLikely(){
 	int index = 0;
 	int value = +2147483647;
@@ -71,7 +62,6 @@ int leastLikely(){
 		if(bins[i] != 0 && bins[i] < value){
 			value = bins[i];
 			index = i;
-			//printf("%d\n", i);
 		}
 	}
 	return index;
