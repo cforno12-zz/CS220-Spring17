@@ -1,5 +1,5 @@
 test : numLetters
-	./numLetters 342
+	./numLetters 343
 	./numLetters 115
 	
 numLetters : numLetters.c
