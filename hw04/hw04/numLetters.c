@@ -21,43 +21,15 @@ int main(int argc, char ** argv) {
 		retVal += commaNum[2];
 		temp /= 1000000;
 		num = num - (temp * 1000000);
-		if(temp > 100){
-			retVal += commaNum[0];
-			int temp02 = temp;
-			temp /= 100;
-			retVal += baseNum[temp];
-			temp = temp - (temp * 100);
-			if(temp >= 20){
-				int temp03 = temp;
-				temp03 /= 10;
-				retVal += tensNum[temp03 - 2];
-				temp = temp - (temp03 * 10);
-				retVal += baseNum[temp];
-			} else {
-				retVal += baseNum[temp];
-			}
-		} else {
-			if(temp >= 20){
-				int temp03 = temp;
-				temp03 /= 10;
-				retVal += tensNum[temp03 - 2];
-				temp = temp - (temp03 * 10);
-				retVal += baseNum[temp];
-			} else {
-				retVal += baseNum[temp];
-			}
-		}
+		over100(&num);
 	}
 	if(num > 1000) {
 		int temp = num;
 		retVal += commaNum[1];
 		temp /= 1000;
 		num = num - (temp * 1000);
-		if(temp > 100){
-			retVal += commaNum[0];
-		}
+		over100(&num);
 	}
-
 	over100(&num);
 
 
