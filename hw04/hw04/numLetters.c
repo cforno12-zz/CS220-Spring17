@@ -65,30 +65,30 @@ int main(int argc, char ** argv) {
 }
 
 void over100(int* num){
-	if(num > 100){
+	if(*num > 100){
 		retVal += commaNum[0];
-		int temp02 = num;
+		int temp02 = *num;
 		temp02 /= 100;
 		retVal += baseNum[temp02];
-		num = num - (temp02 * 100);
-		if(num >= 20){
-			int temp03 = num;
+		*num = *num - (temp02 * 100);
+		if(*num >= 20){
+			int temp03 = *num;
 			temp03 /= 10;
 			retVal += tensNum[temp03 - 2];
-			num = num - (temp03 * 10);
-			retVal += baseNum[num];
+			*num = *num - (temp03 * 10);
+			retVal += baseNum[*num];
 		} else {
-			retVal += baseNum[num];
+			retVal += baseNum[*num];
 		}
 	} else {
-		if(num >= 20){
-			int temp03 = num;
+		if(*num >= 20){
+			int temp03 = *num;
 			temp03 /= 10;
 			retVal += tensNum[temp03 - 2];
-			num = num - (temp03 * 10);
-			retVal += baseNum[num];
+			*num = *num - (temp03 * 10);
+			retVal += baseNum[*num];
 		} else {
-			retVal += baseNum[num];
+			retVal += baseNum[*num];
 		}
 	}
 }
