@@ -20,6 +20,7 @@ int main(int argc, char ** argv) {
 		int temp = num;
 		retVal += commaNum[2];
 		temp /= 1000000;
+		over100(&temp);
 		num = num - (temp * 1000000);
 		if(num > 1000){
 			temp = num;

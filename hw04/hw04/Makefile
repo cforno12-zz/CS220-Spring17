@@ -2,6 +2,8 @@ test : numLetters
 	./numLetters 343
 	./numLetters 115
 	./numLetters 11618808
+	./numLetters 11393389
+	./numLetters 94307194
 
 numLetters : numLetters.c
 	gcc -Wall -g -o numLetters numLetters.c
