@@ -21,7 +21,15 @@ int main(int argc, char ** argv) {
 		retVal += commaNum[2];
 		temp /= 1000000;
 		num = num - (temp * 1000000);
-		over100(&num);
+		if(num > 1000){
+			temp = num;
+			retVal += commaNum[1];
+			temp /= 1000;
+			num = num - (temp*1000);
+			over100(&temp);
+		} else {
+			over100(&num);
+		}
 	}
 	if(num > 1000) {
 		int temp = num;
@@ -29,10 +37,9 @@ int main(int argc, char ** argv) {
 		temp /= 1000;
 		num = num - (temp * 1000);
 		over100(&num);
+	} else {
+		over100(&num);
 	}
-	over100(&num);
-
-
 	finished: printf("%d takes %d letters\n", actual, retVal);
 	return 0;
 }
