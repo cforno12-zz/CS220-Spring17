@@ -79,7 +79,7 @@ int main(int argc, char ** argv) {
 			printf("so far so good.\n");
 			int temp02 = temp;
 			temp02 /= 10;
-			retVal += tensNum[temp02 + 3];
+			retVal += tensNum[temp02 - 3];
 			temp = temp - (temp02 * 10);
 			retVal += baseNum[temp];
 		} else {
