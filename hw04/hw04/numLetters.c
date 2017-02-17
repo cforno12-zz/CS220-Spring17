@@ -12,21 +12,6 @@ int main(int argc, char ** argv) {
 	if(num < 0 || num > 1000000000){
 		return 1;
 	}
-	//numArray is an array which contains all the digits in the inputted number
-	//each in its own index.
-	int temp = num;
-	int numArray[10];
-	int i;
-	int size = 0; //the size of the numArray.
-	for (i = 0; i < 10; i++) {
-		if(temp != 0){
-			numArray[i] = temp % 10;
-		 	temp /= 10;
-		} else {
-			size = i;
-			break;
-		}
-	}
 	// words after 20 is just repeated
 	int baseNum[] = {4 ,3 ,3 ,5 ,4 ,4 ,3 ,5 ,5 ,4 ,3 ,6 ,6 ,8 ,8 ,7 ,7 ,9 ,8 ,7 ,6};
 	//size 21
