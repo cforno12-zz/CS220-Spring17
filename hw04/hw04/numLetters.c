@@ -75,9 +75,9 @@ int main(int argc, char ** argv) {
 	if(num > 100){
 		retVal += commaNum[0];
 		int temp02 = num;
-		num /= 100;
-		retVal += baseNum[num];
-		num = num - (num * 100);
+		temp02 /= 100;
+		retVal += baseNum[temp02];
+		num = num - (temp02 * 100);
 		if(num >= 20){
 			int temp03 = num;
 			temp03 /= 10;
