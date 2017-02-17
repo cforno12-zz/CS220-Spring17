@@ -40,10 +40,12 @@ int main(int argc, char ** argv) {
 		retVal += commaNum[1];
 		temp /= 1000;
 		num = num - (temp * 1000);
-		over100(&num);
+		over100(&temp);
 	} else {
 		over100(&num);
+		goto finished;
 	}
+	over100(&num);
 	finished: printf("%d takes %d letters\n", actual, retVal);
 	return 0;
 }
