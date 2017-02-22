@@ -56,13 +56,13 @@ void freeTree(struct tnode * t) {
 
 void insertVal(struct tnode * t, int value) {
 	assert(t);
-   if(value < t->value){
+   if(value <= t->value){
       if(t->left == NULL){
          t->left = makeNode(value);
       } else {
          insertVal(t->left, value);
       }
-   } else if (value >= t->value){
+   } else if (value > t->value){
       if(t->right == NULL){
          t->right = makeNode(value);
       } else {
@@ -74,35 +74,40 @@ void insertVal(struct tnode * t, int value) {
 void prLVR(struct tnode * t) {
 	assert(t);
     if(t->left != NULL){
-        printf("|%i+\n", t->value);
-    } else {
-        printf("|   ");
         prLVR(t->left);
     }
-   /* Write code to:
-   	- prLVR the left sub-tree,
-   	- print the value of the node,
-   	- prLVR the right sub-tree
-   */
+    printf("%i ", t->value);
+    if(t->right != NULL){
+        prLVR(t->right);
+    }
 }
 
 
 void prRVL(struct tnode * t) {
     assert(t);
     if(t->right != NULL){
-        printf("|%i+\n", t->value);
-    } else {
-        printf("|   ");
-        prLVR(t->right);
+        prRVL(t->right);
     }
-   /* Write code to:
-   	- prRVL the right sub-tree,
-   	- print the value of the node,
-   	- prRVL the left sub-tree
-   */
+    printf("%i ", t->value);
+    if(t->left != NULL){
+        prRVL(t->left);
+    }
 }
 
 void printTree(struct tnode * t, char * prefix) {
 	assert(t);
-	/* Write code to print a tree graphically */
+    if(t->right!=NULL){
+        printf("%s", prefix);
+        printTree(t->right,"   |");
+    }
+    if(t->right==NULL&&t->left==NULL){
+        printf("%s%d\n", prefix, t->value);
+    } else {
+        printf("%s%d+\n",prefix, t->value);
+    }
+    if(t->left!=NULL){
+        printf("%s", prefix);
+        printTree(t->left, "   |");
+    }
+
 }
