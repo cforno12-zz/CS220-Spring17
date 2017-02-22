@@ -56,11 +56,29 @@ void freeTree(struct tnode * t) {
 
 void insertVal(struct tnode * t, int value) {
 	assert(t);
-	/* Write code to insert value into tree t here */
+   if(value < t->value){
+      if(t->left == NULL){
+         t->left = makeNode(value);
+      } else {
+         insertVal(t->left, value);
+      }
+   } else if (value >= t->value){
+      if(t->right == NULL){
+         t->right = makeNode(value);
+      } else {
+         insertVal(t->right, value);
+      }
+   }
 }
 
 void prLVR(struct tnode * t) {
 	assert(t);
+    if(t->left != NULL){
+        printf("|%i+\n", t->value);
+    } else {
+        printf("|   ");
+        prLVR(t->left);
+    }
    /* Write code to:
    	- prLVR the left sub-tree,
    	- print the value of the node,
@@ -70,7 +88,13 @@ void prLVR(struct tnode * t) {
 
 
 void prRVL(struct tnode * t) {
-	assert(t);
+    assert(t);
+    if(t->right != NULL){
+        printf("|%i+\n", t->value);
+    } else {
+        printf("|   ");
+        prLVR(t->right);
+    }
    /* Write code to:
    	- prRVL the right sub-tree,
    	- print the value of the node,
@@ -82,4 +106,3 @@ void printTree(struct tnode * t, char * prefix) {
 	assert(t);
 	/* Write code to print a tree graphically */
 }
-
