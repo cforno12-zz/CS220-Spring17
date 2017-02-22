@@ -96,9 +96,11 @@ void prRVL(struct tnode * t) {
 
 void printTree(struct tnode * t, char * prefix) {
 	assert(t);
+    char nextPref[256];
+    strcpy(nextPref, prefix);
+    strcat(nextPref,"   |");
     if(t->right!=NULL){
-        printf("%s", prefix);
-        printTree(t->right,"   |");
+        printTree(t->right,nextPref);
     }
     if(t->right==NULL&&t->left==NULL){
         printf("%s%d\n", prefix, t->value);
@@ -106,8 +108,7 @@ void printTree(struct tnode * t, char * prefix) {
         printf("%s%d+\n",prefix, t->value);
     }
     if(t->left!=NULL){
-        printf("%s", prefix);
-        printTree(t->left, "   |");
+        printTree(t->left, nextPref);
     }
 
 }
