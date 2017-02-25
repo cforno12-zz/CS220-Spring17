@@ -10,8 +10,11 @@ bool arrayListEnlarge(arrayList list);
 arrayList arrayListCreate() {
 	arrayList list = (arrayList)malloc(sizeof(struct arrayListStruct));
 	if (list==NULL) return list;
+	//a pointer to the actual list of data itmes
 	list->data=(int *)malloc(sizeof(int)*INITSIZE);
+	//variable to keep track of how many data items are being used in the arrayList
 	list->numUsed=0;
+	//keeps track of the number of spaces for items available
 	list->numAlloc=INITSIZE;
 	return list;
 }
@@ -27,26 +30,40 @@ bool arrayListEnlarge(arrayList list) {
 
 bool arrayListAdd(arrayList list, int item){
 	assert(list);
-	//increment numUsed by 1
-	//
+	if(list->numAlloc == 0){
+		return false;
+	}
+	while (*list->data != NULL) {
+		list->data++;
+	}
+	*list->data = item;
+	list->numAlloc--;
+	list->numUsed++;
 }
 void arrayListClear(arrayList list){
 	assert(list);
-	list->numUsed = 0;
+	int i;
+	while (list->numUsed != 0) {
+		*list->data = NULL;
+		list->data++;
+		list->numUsed--;
+	}
 }
 bool arrayListContains(arrayList list, int item){
 	assert(list);
-	int retVal = false;
-	if(*list->data == item){
-		retVal = true;
-	} else if(list->data == NULL){
-		retVal = false;
-	} else {
-		arrayListContains(list->data, item);
+	while (*list->data != NULL) {
+		if (*list->data == item) {
+			return true;
+		} else {
+			list->data++;
+		}
 	}
+	return false;
+
 }
 int arrayListGet(arrayList list,int index){
 	assert(list);
+	
 }
 int arrayListIndexOf(arrayList list, int item){
 	assert(list);

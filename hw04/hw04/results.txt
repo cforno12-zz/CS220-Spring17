@@ -1,0 +1,6 @@
+342 takes 20 letters
+115 takes 17 letters
+0 takes 4 letters
+1000000000 takes 10 letters
+777777777 takes 87 letters
+18000015 takes 29 letters

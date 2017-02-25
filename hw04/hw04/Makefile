@@ -1,32 +1,23 @@
 test : numLetters
-	./numLetters 343
-	echo 343 == 22
+	./numLetters 342
 	./numLetters 115
-	echo 115 == 17
-	./numLetters 11618808
-	echo 11618808 == 56
-	./numLetters 11393389
-	echo 11393389 == 66
-	./numLetters 94307194
-	echo 94307194 == 62
-	./numLetters 550670
-	echo 550670 == 41
-	./numLetters 98
-	echo 98 == 11
-	./numLetters 100
-	echo 100 == 10
-	./numLetters 10
-	echo 10 == 3
-	./numLetters 0
-	echo 0 == 4
-	./numLetters 8256
-	echo 8256 == 31
+
+grade : numLetters
+	./numLetters 342 > results.txt
+	./numLetters 115 >> results.txt
+	./numLetters 0 >> results.txt
+	./numLetters 1000000000 >>results.txt
+	./numLetters  777777777 >>results.txt
+	./numLetters 18000015 >>results.txt
 
 numLetters : numLetters.c
 	gcc -Wall -g -o numLetters numLetters.c
 
+writeNumbers : writeNumbers.c
+	gcc -Wall -g -o writeNumbers writeNumbers.c
+
 clean :
-	-rm numLetters hw04_$(USER).tar.gz
+	-rm numLetters writeNumbers hw04_$(USER).tar.gz
 	rm -r numLetters.dSYM
 
 submit: numLetters.c
