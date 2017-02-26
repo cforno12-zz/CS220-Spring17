@@ -38,7 +38,7 @@ bool arrayListAdd(arrayList list, int item){
 	if(list->numAlloc == list->numUsed){
 		return false;
 	}
-	list->data[list->numUsed-1] = item;
+	list->data[list->numUsed++] = item;
 
 	return true;
 }
@@ -69,6 +69,7 @@ int arrayListIndexOf(arrayList list, int item){
 	for (i = 0; i < list->numUsed; i++) {
 		if(list->data[i] == item){
 			retVal = i;
+			break;
 		}
 	}
 	return retVal;
