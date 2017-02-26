@@ -26,32 +26,29 @@ bool arrayListEnlarge(arrayList list) {
 	return true;
 }
 
+void arrayListFree(arrayList list) {
+	free(list->data);
+	free(list);
+}
+
 /* Put definitions of the other arrayList methods in arrayList.h here */
 
 bool arrayListAdd(arrayList list, int item){
 	assert(list);
-	if(list->numAlloc == 0){
+	if(list->numAlloc == list->numUsed){
 		return false;
 	}
-	while (*list->data != NULL) {
-		list->data++;
-	}
-	*list->data = item;
-	list->numAlloc--;
-	list->numUsed++;
+	list->data[list->numUsed-1] = item;
+
+	return true;
 }
 void arrayListClear(arrayList list){
 	assert(list);
-	int i;
-	while (list->numUsed != 0) {
-		*list->data = NULL;
-		list->data++;
-		list->numUsed--;
-	}
+	list->numUsed=0;
 }
 bool arrayListContains(arrayList list, int item){
 	assert(list);
-	while (*list->data != NULL) {
+	while (*list->data != (int) NULL) {
 		if (*list->data == item) {
 			return true;
 		} else {
@@ -63,29 +60,53 @@ bool arrayListContains(arrayList list, int item){
 }
 int arrayListGet(arrayList list,int index){
 	assert(list);
-	
+	return list->data[index];
 }
 int arrayListIndexOf(arrayList list, int item){
 	assert(list);
 	//should return a -1 if it cannot find its argument in the arrayList,
 	//just like the Java "indexOf" method.
+	int retVal = -1;
+	int i;
+	for (i = 0; i < list->numUsed; i++) {
+		if(list->data[i] == item){
+			retVal = i;
+		}
+	}
+	return retVal;
 }
 bool arrayListIsEmpty(arrayList list){
 	assert(list);
+	return (list->numUsed == 0);
 }
 int arrayListSet(arrayList list, int index, int item){
 	assert(list);
+	int retVal = 0;
+	if(index > list->numUsed){
+		retVal = list->data[index];
+		list->data[index] = item;
+	}
+	return retVal;
+
 }
 int arrayListSize(arrayList list){
-
+	return list->numUsed;
 }
 char * arrayListToString(arrayList list,char *buffer){
 	assert(list);
+	buffer[0] = 0;
+	strcat(buffer, "[");
+	int i;
+	for (i = 0; i < list->numUsed; i++) {
+		char temp[10];
+		sprintf(temp, "%d", list->data[i]);
+		strcat(buffer, temp);
+		if (i!=list->numUsed-1) {
+			strcat(buffer, ", ");
+		}
+	}
+	strcat(buffer, "]");
+	return buffer;
 	//should be written into the space provided by your caller in the
 	//"buffer" argument, and you should return the buffer when you are finished
-}
-
-void arrayListFree(arrayList list) {
-	free(list->data);
-	free(list);
 }
