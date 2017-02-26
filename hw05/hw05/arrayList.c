@@ -48,15 +48,13 @@ void arrayListClear(arrayList list){
 }
 bool arrayListContains(arrayList list, int item){
 	assert(list);
-	while (*list->data != (int) NULL) {
-		if (*list->data == item) {
+	int i;
+	for (i = 0; i < list->numUsed; i++) {
+		if(list->data[i] == item){
 			return true;
-		} else {
-			list->data++;
 		}
 	}
 	return false;
-
 }
 int arrayListGet(arrayList list,int index){
 	assert(list);
