@@ -36,7 +36,11 @@ void arrayListFree(arrayList list) {
 bool arrayListAdd(arrayList list, int item){
 	assert(list);
 	if(list->numAlloc == list->numUsed){
-		return false;
+		if(arrayListEnlarge(list)){
+			arrayListAdd(list,item);
+		} else {
+			return false;
+		}
 	}
 	list->data[list->numUsed++] = item;
 
