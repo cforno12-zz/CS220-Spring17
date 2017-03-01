@@ -3,7 +3,7 @@
 
 /* ----------------------------------------------------------------------------------------------------------
 
-	A floatx number is an IEEE floating point numbert defined by two parameters:
+	A floatx number is an IEEE floating point number defined by two parameters:
 		a) The total number of bits tot_bits
 		b) The number of bits in the exponent, exp_bits
 
@@ -22,7 +22,7 @@ typedef struct {
 
 typedef unsigned long floatx; // Provide 64 bits for floatx, even though we only use tot_bits
 
-/* Return floatx representation which best  approximates value */
+/* Return floatx representation which best approximates value */
 floatx doubleToFloatx(const floatxDef *def, double value);
 
 /* Return C double with value which best approximates floatx fx */

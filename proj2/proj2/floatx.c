@@ -5,14 +5,20 @@
 	best approximates value
 -------------------------------------------------------------------------------- */
 floatx doubleToFloatx(const floatxDef *def, double value) {
-	/* Put your code here */
-	return 0;
+	floatx retVal;
+
+	
+
+	return retVal;
 }
 
 /** Return C double with value which best approximates that of floatx fx
  *  (as defined by *def).
  */
 double floatxToDouble(const floatxDef *def, floatx fx) {
-	/* Put your code here */
-	return NAN;
+	double retVal = 0.0;
+
+
+
+	return retVal;
 }
