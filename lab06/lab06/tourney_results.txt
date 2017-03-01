@@ -1,0 +1,45 @@
+
+============= Starting tier 1 =============
+-------------------- Winners Bracket ----------------------
+Playing paper against rock ...
+  paper score is 50, rock score is 0 ...paper Won!!!!
+Playing random against cforno1 ...
+  random score is 40, cforno1 score is 48 ...cforno1 Won!!!
+  Player scissors got a bye into the next tier
+============= Finished tier 1 =============
+
+============= Starting tier 2 =============
+-------------------- Winners Bracket ----------------------
+Playing scissors against cforno1 ...
+  scissors score is 2, cforno1 score is 48 ...cforno1 Won!!!
+  Player paper got a bye into the next tier
+--------------------- Losers Bracket ------------------------------
+Playing rock against random ...
+  rock score is 36, random score is 22 ...rock Won!!!!
+Eliminating random after two losses
+============= Finished tier 2 =============
+
+============= Starting tier 3 =============
+-------------------- Winners Bracket ----------------------
+Playing paper against cforno1 ...
+  paper score is 0, cforno1 score is 50 ...cforno1 Won!!!
+--------------------- Losers Bracket ------------------------------
+Playing scissors against rock ...
+  scissors score is 0, rock score is 50 ...rock Won!!!
+Eliminating scissors after two losses
+============= Finished tier 3 =============
+
+============= Starting tier 4 =============
+-------------------- Winners Bracket ----------------------
+  Player cforno1 got a bye into the next tier
+--------------------- Losers Bracket ------------------------------
+Playing rock against paper ...
+  rock score is 0, paper score is 50 ...paper Won!!!
+Eliminating rock after two losses
+============= Finished tier 4 =============
+
+========== Championship Match! ==============
+Playing cforno1 against paper ...
+  cforno1 score is 51, paper score is 0 ...cforno1 Won!!!!
+
+Winner and unbeaten champion: cforno1!!!

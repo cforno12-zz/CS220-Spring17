@@ -18,6 +18,7 @@ rps player_cforno1(int round,rps *myhist,rps *opphist) {
 			return Rock;
 		}
 	}
+	return Rock;
 }
 
 register_player(player_cforno1,"cforno1");
