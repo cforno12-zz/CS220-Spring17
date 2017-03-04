@@ -7,7 +7,7 @@
 floatx doubleToFloatx(const floatxDef *def, double value) {
 	floatx retVal;
 
-	
+	//Change in float
 
 	return retVal;
 }
