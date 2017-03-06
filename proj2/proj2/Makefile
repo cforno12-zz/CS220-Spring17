@@ -9,6 +9,7 @@ floatx:  	main.c floatx.c floatx.h
 
 clean:
 		-rm floatx $(ITEM)_cforno1.tar.gz
+		rm -r floatx.dSYM
 
 submit : $(SRC_FILES)
 	mkdir $(ITEM)_cforno1

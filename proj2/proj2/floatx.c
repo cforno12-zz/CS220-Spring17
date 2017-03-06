@@ -1,15 +1,14 @@
 #include "floatx.h"
 
 /*--------------------------------------------------------------------------------
-	Return floatx representation (as defined by *def) which
-	best approximates value
--------------------------------------------------------------------------------- */
+  Return floatx representation (as defined by *def) which
+  best approximates value
+  -------------------------------------------------------------------------------- */
 floatx doubleToFloatx(const floatxDef *def, double value) {
-	floatx retVal;
-
-	//Change in float
-
-	return retVal;
+    floatx retVal = (floatx) malloc(sizeof(floatx));
+    if(def->totBits == sizeof(value)){
+        
+    }
 }
 
 /** Return C double with value which best approximates that of floatx fx
@@ -18,7 +17,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 double floatxToDouble(const floatxDef *def, floatx fx) {
 	double retVal = 0.0;
 
-
+    
 
 	return retVal;
 }
