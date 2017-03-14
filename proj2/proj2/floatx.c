@@ -35,18 +35,13 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	int fractBits = def->totBits - def->expBits - 1;
 	double retVal = 0.0;
 
-	
+
 
 	return retVal;
 }
 
 int pow_of_two(int exponent){
 	int retVal = 1;
-	if(exponent == 0){
-		return 1;
-	} else if (exponent == 1){
-		return 2;
-	}
 	int i;
 	for (i = 0; i < exponent; i++) {
 		retVal *= 2;
