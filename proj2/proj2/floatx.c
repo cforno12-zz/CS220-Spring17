@@ -5,17 +5,17 @@
 	best approximates value
 -------------------------------------------------------------------------------- */
 
-int pow_of_two(int exponent);
-
 floatx doubleToFloatx(const floatxDef *def, double value) {
 
 	floatx bits = *((floatx*)&value);
 	int fracBits = def->totBits - def->expBits - 1;
 	floatx retVal = 0;
 
-	int biased = pow_of_two((def->expBits) - 1);
-	bits = (bits - 1023) + biased - 1;
+	bits -= 1023;
+    bits = (bits << (def->expBits - 1)) - 1;
 
+    
+ 
 	// I started with making a helper function to get a range of bits from a number.
 	// You need to take those and convert them into smaller bits.
 	// The fraction is the rest of the bits and you can just throw out the ones at the end you don't need.
