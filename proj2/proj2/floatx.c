@@ -26,10 +26,17 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	getExp += (1 << (def->expBits - 1)) - 1;
 	retVal += getExp << floatFracNum;
 	floatx tempFrac = allBits << 12;
-	floatx getFrac = tempFrac >> (doubleSize - floatFracNum);
+	floatx getFrac = tempFrac >> (doubleSize - floatFracNum-1);
+	int rounding = getFrac % 2;
+	if(rounding == 1){
+		getFrac >>= 1;
+		getFrac += 0x1;
+	} else if(rounding == 0) {
+		getFrac >>= 1;
+	} else {
+		printf("Error rounding the fraction bits in line %d\n", __LINE__);
+	}
 	retVal += getFrac;
-	// You can just truncate the fraction to however many bits the definition calls for.
-	// But you have to convert the exponent by subtracting 1023 and then adding 2^(expBits-1)-1 to it.
 	/*
 	* Okay so for denormalized numbers: if the unbiased exponent is less than or equal to 0
 	* then you know its going to be denormal.
