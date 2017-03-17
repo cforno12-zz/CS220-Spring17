@@ -1,5 +1,7 @@
 #include "floatx.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 /*--------------------------------------------------------------------------------
 	Return floatx representation (as defined by *def) which
 	best approximates value
@@ -8,17 +10,24 @@ void print_bits(floatx ip);
 floatx doubleToFloatx(const floatxDef *def, double value) {
 
 	floatx allBits = *((floatx*)&value);
-	int fracBitNum = def->totBits - def->expBits - 1;
-	int expBitNum = def->expBits;
+	int floatFracNum = def->totBits - def->expBits - 1;
+	int doubleSize = sizeof(value)*8;
+	int doubleFracNum = 52;
 	floatx retVal = 0;
 
-	long bias = 1023; //bias for double data type
+	int bias = 1023; //bias for double data type
 	// masking to get only the exponent bits
-	floatx getExp = (allBits >> 52) & 0b11111111111;
-	floatx getFrac = (allBits >> (51 - fracBitNum)) & 0b11111111111;
+	floatx sign = allBits >> (doubleSize - 1);
+	retVal += sign << (def->totBits - 1);
+	//get rid of sign bit
+	floatx tempExp = allBits << 1;
+	floatx getExp = tempExp >> (doubleFracNum + 1);
 	getExp -= bias;
 	getExp += (1 << (def->expBits - 1)) - 1;
-	//print_bits(getExp);
+	retVal += getExp << floatFracNum;
+	floatx tempFrac = allBits << 12;
+	floatx getFrac = tempFrac >> (doubleSize - floatFracNum);
+	retVal += getFrac;
 	// You can just truncate the fraction to however many bits the definition calls for.
 	// But you have to convert the exponent by subtracting 1023 and then adding 2^(expBits-1)-1 to it.
 	/*
@@ -34,7 +43,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	* double smallest = 1/pow(2, fBits-1)*pow(2, (-pow(2, (def->expBits-1))+1));
 	* then I just return 0
 	*/
-	return getExp;
+	return retVal;
 }
 
 /*
@@ -44,7 +53,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 double floatxToDouble(const floatxDef *def, floatx fx) {
 
 	/*double allBits = *((double*)&fx);
-	int fractBitNum = def->totBits - def->expBits - 1;
+	int fracBitNum = def->totBits - def->expBits - 1;
 	double retVal = 0.0;
 
 	int bias = (1 << (def->expBits - 1)) - 1;
