@@ -60,6 +60,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	/*-------------------------------------------*/
 	//DENORMAL NUMBERS
 	double smallest = (1/pow(2, floatFracNum-1)) * pow(2, (- pow(2, (def->expBits-1))+1));
+	//if given the smallest possible denormal number, return 0.
 	if(value == smallest){
 		return 0;
 	}
