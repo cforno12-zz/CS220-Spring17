@@ -93,21 +93,30 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 double floatxToDouble(const floatxDef *def, floatx fx) {
 
 	double retVal = 0;
+    floatx tempReturn = 0;
 
+    //floatx variables to keep track
 	int floatSize = def->totBits;
 	int floatFracNum = def->totBits - def->expBits - 1;
 	int floatExpNum = def->expBits;
 	int floatBias = pow(2, (floatExpNum - 1)) - 1;
 
+    //double variables to keep track of
 	int doubleSize = sizeof(retVal)*8;
 	int doubleFracNum = 52;
 	int doubleExpNum = 11;
-	int doubleBias = pow(2, doubleExpNum-1)-1;
+	int doubleBias = pow(2, (doubleExpNum-1))-1;
 
-	floatx sign = fx >> (floatSize - 1);
-	//idk how to get expBits from fx...the frac bits as well for that matter....
-	floatx getExp = fx << 1;
+    fx <<= (doubleSize - floatSize + 1);
+    floatx tempExp = fx << 1;
+    floatx getExp = tempExp >> (doubleSize - floatExpNum + 1);
+    getExp -= floatBias;
 
+    getExp += doubleBias;
+    print_bits(getExp);
+    tempReturn = getExp << (doubleFracNum + 1);
+    print_bits(tempReturn);
+    retVal = *((double*)&tempReturn);
 	return retVal;
 }
 
