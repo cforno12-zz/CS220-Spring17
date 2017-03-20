@@ -18,7 +18,6 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	int doubleExpNum = 11;
 	floatx retVal = 0;
 	int doubleBias = pow(2, doubleExpNum-1)-1; //bias for double data type
-
 	/*----------------------------------------*/
 	// moving sign, exp, and frac bits all the way to the right,
 	// while zeroing out everything to the left
@@ -46,7 +45,6 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	}
 	/*----------------------------------------*/
 	//checking for infinity
-
 	if((signed long)getExp >= doubleBias){
 		getExp = pow(2, def->expBits) - 1;
 	} else if((signed long)getExp >= (pow(2, def->expBits-1) - 1)){
@@ -55,8 +53,6 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	} else {
 		getExp += pow(2,(def->expBits - 1)) - 1;
 	}
-	/*-------------------------------------------*/
-
 	/*-------------------------------------------*/
 	//DENORMAL NUMBERS
 	double smallest = (1/pow(2, floatFracNum-1)) * pow(2, (- pow(2, (def->expBits-1))+1));
@@ -92,6 +88,12 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
  */
 double floatxToDouble(const floatxDef *def, floatx fx) {
 
+
+    union{
+        floatx flx;
+        double db;
+    } both;
+
 	double retVal = 0;
     floatx tempReturn = 0;
 
@@ -110,13 +112,15 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
     fx <<= (doubleSize - floatSize + 1);
     floatx tempExp = fx << 1;
     floatx getExp = tempExp >> (doubleSize - floatExpNum + 1);
-    getExp -= floatBias;
 
+    getExp -= floatBias;
     getExp += doubleBias;
-    print_bits(getExp);
+
     tempReturn = getExp << (doubleFracNum + 1);
+    both.flx = tempReturn;
     print_bits(tempReturn);
-    retVal = *((double*)&tempReturn);
+    retVal = both.db;
+    print_bits(retVal);
 	return retVal;
 }
 
