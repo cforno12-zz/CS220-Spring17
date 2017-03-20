@@ -99,7 +99,7 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 
     //floatx variables to keep track
 	int floatSize = def->totBits;
-	int floatFracNum = def->totBits - def->expBits - 1;
+	//int floatFracNum = def->totBits - def->expBits - 1;
 	int floatExpNum = def->expBits;
 	int floatBias = pow(2, (floatExpNum - 1)) - 1;
 
@@ -108,16 +108,32 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	int doubleFracNum = 52;
     int doubleExpNum = 11;
 	int doubleBias = pow(2, (doubleExpNum-1))-1;
-    fx <<= (doubleSize - floatSize + 1);
-     print_bits(fx);
+
+	fx <<= (doubleSize - floatSize);
 
     //getting sign bit from floatx
     floatx sign = fx >> (doubleSize - 1);
+
     //getting exp bits from floatx
     floatx tempExp = fx << 1;
-    floatx getExp = tempExp >> (doubleSize - floatExpNum + 1);
+    floatx getExp = tempExp >> (doubleSize - floatExpNum);
+
+    //getting fracBits from floatx
+    floatx tempFrac = fx << (floatExpNum + 1);
+    floatx getFrac = tempFrac >> (doubleExpNum + 1);
 
     getExp -= floatBias;
+
+    //DENORMAL NUMBERS
+    if((signed long)getExp < 0){
+        signed long shift = (signed long) getExp;
+        shift *= -1;
+        floatx newFrac = fx << (floatExpNum + 1);
+        newFrac >>= (floatExpNum + 1);
+        //newFrac >>= ();
+        getFrac = newFrac;
+    }
+
     //checking for infinity
     if((signed long)getExp >= doubleBias){
         return INFINITY;
@@ -126,9 +142,6 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
     } else {
         getExp += doubleBias;
     }
-    //getting fracBits from floatx
-    floatx tempFrac = fx << (floatExpNum + 1);
-    floatx getFrac = tempFrac >> (doubleSize - doubleFracNum + 1);
 
     //putting everything together
     tempReturn += sign << (doubleSize - 1);
