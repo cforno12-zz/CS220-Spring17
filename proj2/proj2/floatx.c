@@ -106,7 +106,7 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
     //double variables to keep track of
 	int doubleSize = sizeof(retVal)*8;
 	int doubleFracNum = 52;
-	int doubleExpNum = 11;
+    int doubleExpNum = 11;
 	int doubleBias = pow(2, (doubleExpNum-1))-1;
 
     fx <<= (doubleSize - floatSize + 1);
@@ -119,13 +119,20 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
     floatx getExp = tempExp >> (doubleSize - floatExpNum + 1);
 
     getExp -= floatBias;
-    getExp += doubleBias;
-
+    //checking for infinity
+    if((signed long)getExp >= doubleBias){
+        return INFINITY;
+    } else if ((signed long)getExp >= floatBias){
+        return INFINITY;
+    } else {
+        getExp += doubleBias;
+    }
     //getting fracBits from floatx
     floatx tempFrac = fx << (floatExpNum + 1);
-    floatx getFrac = tempFrac >> (doubleSize - doubleFracNum + 1);
+    floatx getFrac = tempFrac >> (doubleSize - doubleFracNum - 1);
 
     //putting everything together
+    tempReturn += sign << (doubleSize - 1);
     tempReturn += getExp << (doubleFracNum + 1);
     tempReturn += getFrac;
 
