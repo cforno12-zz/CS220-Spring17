@@ -110,17 +110,28 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	int doubleBias = pow(2, (doubleExpNum-1))-1;
 
     fx <<= (doubleSize - floatSize + 1);
+
+    //getting sign bit from floatx
+    floatx sign = fx >> (doubleSize - 1);
+
+    //getting exp bits from floatx
     floatx tempExp = fx << 1;
     floatx getExp = tempExp >> (doubleSize - floatExpNum + 1);
 
     getExp -= floatBias;
     getExp += doubleBias;
 
-    tempReturn = getExp << (doubleFracNum + 1);
+    //getting fracBits from floatx
+    floatx tempFrac = fx << (floatExpNum + 1);
+    floatx getFrac = tempFrac >> (doubleSize - doubleFracNum + 1);
+
+    //putting everything together
+    tempReturn += getExp << (doubleFracNum + 1);
+    tempReturn += getFrac;
+
+
     both.flx = tempReturn;
-    print_bits(tempReturn);
     retVal = both.db;
-    print_bits(retVal);
 	return retVal;
 }
 
