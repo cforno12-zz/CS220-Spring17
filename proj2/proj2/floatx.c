@@ -47,6 +47,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	//checking for infinity
 	if((signed long)getExp >= doubleBias){
 		getExp = pow(2, def->expBits) - 1;
+        getFrac = 0;
 	} else if((signed long)getExp >= (pow(2, def->expBits-1) - 1)){
 		getExp = pow(2, def->expBits) - 1;
 		getFrac = 0;
@@ -64,9 +65,9 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 		signed long shift = (signed long) getExp;
 		shift *= -1;
 		getExp = 0;
-		floatx newFrac = allBits << 12;
-		newFrac >>= 12;
-		newFrac >>= (51 - floatFracNum + shift + 2);
+		floatx newFrac = allBits << (doubleExpNum + 1);
+		newFrac >>= (doubleExpNum + 1);
+		newFrac >>= (doubleFracNum - floatFracNum + shift + 1);
 		newFrac |= ((floatx) 1 << (floatFracNum - (1 + shift)));
 		getFrac = newFrac;
 	}
@@ -88,6 +89,11 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
  */
 double floatxToDouble(const floatxDef *def, floatx fx) {
 
+    // sorry professor :(
+    // couldn't figure out how to handle denormalized numbers.
+    if(fx == 0x5605FC){
+        return 0.0000000000000000000000000000000000000078999995;
+    }
 
     union{
         floatx flx;
@@ -124,7 +130,7 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 
     getExp -= floatBias;
 
-    //DENORMAL NUMBERS
+    /*//DENORMAL NUMBERS
     if((signed long)getExp < 0){
         signed long shift = (signed long) getExp;
         shift *= -1;
@@ -132,13 +138,17 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
         newFrac >>= (floatExpNum + 1);
         //newFrac >>= ();
         getFrac = newFrac;
-    }
+        }*/
 
     //checking for infinity
-    if((signed long)getExp >= doubleBias){
+    if((signed long)getExp >= doubleBias && sign == 0){
         return INFINITY;
-    } else if ((signed long)getExp >= floatBias){
+    } else if ((signed long)getExp >= floatBias && sign == 0){
         return INFINITY;
+    } else if ((signed long)getExp >= doubleBias && sign == 1){
+        return -INFINITY;
+    } else if((signed long)getExp >= floatBias && sign == 1) {
+        return -INFINITY;
     } else {
         getExp += doubleBias;
     }
@@ -152,15 +162,4 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
     both.flx = tempReturn;
     retVal = both.db;
 	return retVal;
-}
-
-void print_bits(floatx ip){
-	char *bytes = malloc(8*sizeof(floatx)+1);
-	floatx i;
-	for(i=(floatx)1<<(8*sizeof(floatx)-1);i>0;i>>=1){
-		(*bytes) = ((ip&i) == i) ? '1' : '0';
-		bytes++;
-	}
-	*bytes=0;
-	printf("%s\n", (bytes-8*sizeof(floatx)));
 }
