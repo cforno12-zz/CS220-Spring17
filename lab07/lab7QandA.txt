@@ -1,55 +1,57 @@
 Answer questions 1-4 with the optimization set at its original value, "OPT=-00".
 
 1. Scan through the x86Math.s and x86Math.objdump.txt files side by side.
-	A. Do these two files contain similar sets of x86 instructions for the "add" function? 	______
-	B. Do both files refer back to the original C code from which they were derived? 	______
-	C. Does the gdb disassembly match the x86 instructions in both the .s and objdump files? _______
-	D. Which format of all three do you find easier and why? 
+	A. Do these two files contain similar sets of x86 instructions for the "add" function? 	______YES
+	B. Do both files refer back to the original C code from which they were derived? 	______YES
+	C. Does the gdb disassembly match the x86 instructions in both the .s and objdump files? _______YES
+	D. Which format of all three do you find easier and why?  x86Math.c
 		
 		
 		
 		
 
 2. How many assembler instructions are required for:
-	A. the "add" function :		_____
-	B. the "subtract" function:	_____
+	A. the "add" function :		_____13
+	B. the "subtract" function:	_____14
 	
 3. How many bytes are needed for the x86 version of the x86Math program? (You can find this by scrolling
 	to the bottom of file x86Math.s and finding the hex value associated with the last instruction in 
-	the file.) _____
+	the file.) _____16e
 	
 4. Find the x86 add instruction that adds op1+op2 in the add function.
-	A. What line number is that instruction at in the x86Math.s file? : _______
-	B. What hexadecimal address contains that instruction from the x86Math.objdump.txt file? : ___________
+	A. What line number is that instruction at in the x86Math.s file? : _______154
+	B. What hexadecimal address contains that instruction from the x86Math.objdump.txt file? : ___________400637
 	
 5. In gdb, just before you execute the instruction at 0x000000000040063d for the first time:
-	A. What is the value in the "edx" register? : _________
-	B. What is the value in the "eax" register? : _________
-	C. After you execute the instruction, what is the value in the "eax" register? : ________
+	A. What is the value in the "edx" register? : _________16
+	B. What is the value in the "eax" register? : _________0
+	C. After you execute the instruction, what is the value in the "eax" register? : ________4
 	
 Answer questions 6-8 with the optimization variable set to "OPT=-O1" to do some optimization
 
 6. Is it still possible to map directly from C code to x86 assembler instructions? What has happened?
-	
+	Yes, but its printing the instructions from the libraries.
 	
 	
 	
 	
 	
 7. In gdb, what x86 instruction is about to get executed when you reach the first breakpoint in the "add" function?
-	______________________________
+	______________________________add
 	 
 8. 
-	A. How many bytes are needed for this x86 version of the x86Math program? _______
-	B. How does this compare to the length of the previous version? About ______________________
-	C. Why is there a difference? _________________________________________________________________
+	A. How many bytes are needed for this x86 version of the x86Math program? _______82
+	B. How does this compare to the length of the previous version? About 0xEC less instrcutions
+	C. Why is there a difference? _________The program is now optimized
 	 
 Answer questions 9-10 with the optimization value set to "OPT=-O0 -DSIMPLE"
 
 9. 
-	A. How many bytes are needed for this x86 version of the x86Math program? _________
-	B. How does this compare to previous versions? ______________________________________________
-	C. Does the optimizer do a better job than a human in this case? _________________
+	A. How many bytes are needed for this x86 version of the x86Math program? _________126
+	B. How does this compare to previous versions? --Shorter than the first version, longer than the second.
+	C. Does the optimizer do a better job than a human in this case? YES
 
 10. Compare the x86 instructions for the add function with the x86 instructions for the add function in the
 	first part of the lab. What is the main difference?
+	The add instruction was moved to the main function instead of stepping in the the actual function,
+	to reduce the number of instructions.

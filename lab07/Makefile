@@ -7,7 +7,7 @@ ITEM = lab07
 #	 -O3 = Most optimizations (make take longer to compile)
 #  Add option '-DSIMPLE' to use simplified definition of math functions
 #      Remove '-DSIMPLE' to use verbose definition of math functions
-OPT=-O0 
+OPT=-O0 -DSIMPLE 
 
 assembler : x86Math x86Math.objdump.txt
 
