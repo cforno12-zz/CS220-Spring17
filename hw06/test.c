@@ -1,15 +1,14 @@
 #include <stdio.h>
 
 int main(int argc, char ** argv){
-    int x = atoi(argv[1]);
-    int y = atoi(argv[2]);
-    unsigned int v = x;
-    unsigned int w = y;
-    int s_sum = x+y;
-    unsigned int u_sum = v+w;
-    if(s_sum == u_sum){
-        printf("Unsigned and signed are the same\n");
+    int x = -5;
+    int y = (x | (-1-x));
+
+    printf("Size of int is: %lu\n", sizeof(y));
+
+    if (y == -1){
+        printf("How did you know that?\n");
     } else {
-        printf("Unsigned and signed are different\n");
+        printf("Special value of x\n!");
     }
 }
