@@ -45,11 +45,10 @@ if (s_sum==u_sum) printf("Unsigned and signed are the same\n");
 else printf("Unsigned and signed are different\n");
 
 a. What do you expect to see printed for most values of argv[1] and argv[2]?
-   For MOST values, "Unsigned and signed are the same"
+	"Unsigned and signed are the same"
 
 b. Are there any values of argv[1] and argv[2] which will result in "Unsigned and signed are different"?
-   If argv[1] + argv[2] add up to more than 2,147,483,647 , it will print "Unsigned and signed are different".
-
+   No
 c. If you changed the addition to multiplication: "s_sum=x*y;" and "u_sum=v*w;" will you get the same results?
    Yes
 
