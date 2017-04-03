@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     }
 
     /* Do all sorts of secret stuff that makes the bomb harder to defuse. */
-    initialize_bomb();
+   inf initialize_bomb();
 
     printf("Welcome to my fiendish little bomb. You have 6 phases with\n");
     printf("which to blow yourself up. Have a nice day!\n");

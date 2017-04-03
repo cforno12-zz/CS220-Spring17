@@ -12,7 +12,7 @@ _init():
   400b06:	74 05                	je     400b0d <_init+0x15>
   400b08:	e8 33 01 00 00       	callq  400c40 <__gmon_start__@plt>
   400b0d:	48 83 c4 08          	add    $0x8,%rsp
-  400b11:	c3                   	retq   
+  400b11:	c3                   	retq
 
 Disassembly of section .plt:
 
@@ -235,7 +235,7 @@ register_tm_clones():
   400dc3:	ff e0                	jmpq   *%rax
   400dc5:	0f 1f 00             	nopl   (%rax)
   400dc8:	5d                   	pop    %rbp
-  400dc9:	c3                   	retq   
+  400dc9:	c3                   	retq
   400dca:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
 
 0000000000400dd0 <__do_global_dtors_aux>:
@@ -247,7 +247,7 @@ __do_global_dtors_aux():
   400ddd:	e8 6e ff ff ff       	callq  400d50 <deregister_tm_clones>
   400de2:	5d                   	pop    %rbp
   400de3:	c6 05 6e 2f 20 00 01 	movb   $0x1,0x202f6e(%rip)        # 603d58 <completed.6661>
-  400dea:	f3 c3                	repz retq 
+  400dea:	f3 c3                	repz retq
   400dec:	0f 1f 40 00          	nopl   0x0(%rax)
 
 0000000000400df0 <frame_dummy>:
