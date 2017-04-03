@@ -41,4 +41,4 @@ Please download this file, edit it to add your answers, and submit the result in
    same as little endian verison of that hex value, which is 0x1010101.
 
 5. The standard library function "float powf(float a,float b)" returns the value of "a" to the power of "b". For instance, powf(2.0,3.0) return 2.0 x 2.0 x 2.0 = 8.0.  Find an integer value for "exp" for which the FRAC bits of the expression "powf(2.0,exp)" is non-zero. (Warning: the representation of INFINITY in floating point has zero FRAC bits.)
-   There is no integer possible to make a float have non-zero fraction bits in this expression.
+   A number becomes denormal when the exponent is between -127 to -149.
