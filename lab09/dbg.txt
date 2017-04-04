@@ -1,0 +1,2 @@
+# This is my gdb command file
+info functions
