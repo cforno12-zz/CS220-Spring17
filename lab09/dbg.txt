@@ -1,2 +1,15 @@
-# This is my gdb command file
-info functions
+b killPlayer
+commands
+where
+end
+b dropPlayerOffEdge
+commands
+where
+end
+b getMove
+commands
+p "Current Row/Col and Wumpus Row/Col..."
+x /2dw $rdi
+x /2dw $rsi
+continue
+end
