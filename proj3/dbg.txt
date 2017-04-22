@@ -1,0 +1,5 @@
+break explode_bomb
+break phase_6
+set disassemble-next-line on
+r answers.txt
+disas

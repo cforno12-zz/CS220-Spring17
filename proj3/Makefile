@@ -1,2 +1,5 @@
-gdb: bomb gdb.txt
-	gdb -x gdb.txt bomb
+test: bomb
+	./bomb
+
+gdb: dbg.txt bomb
+	gdb -x dbg.txt bomb
