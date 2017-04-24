@@ -1,5 +1,0 @@
-break explode_bomb
-break secret_phase
-set disassemble-next-line on
-r key.txt
-disas
