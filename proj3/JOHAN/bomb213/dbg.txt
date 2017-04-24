@@ -1,5 +1,5 @@
 break explode_bomb
-break secret_phase
+break phase_6
 set disassemble-next-line on
-r answers.txt
+r key.txt
 disas
