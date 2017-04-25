@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
 	bool gs;
 
 	while( (gs=getString())) {};
-	printf("Yech.... you failed to run the target.\n");	
+	printf("Yech.... you failed to run the target.\n");
 	return 1;
-   
+
 }
 
 bool getString() {
@@ -23,14 +23,13 @@ bool getString() {
 	buffer[0]='\0';
 	gets(buffer);
 	if (strlen(buffer)>0) {
-		printf("Read line: %s\n",buffer); 
+		printf("Read line: %s\n",buffer);
 		return true;
 	}
 	return false;
-	
 }
 
 bool target() {
 	printf("Whooopeeee... you ran the target!\n");
-	exit(0);	
+	exit(0);
 }
