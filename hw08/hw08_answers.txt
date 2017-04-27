@@ -15,9 +15,9 @@ entries which are not relevant.
 
 Then submit the edited version of this file in myCourses under hw08.
 
-Frame High @   | Frame Low @    | Function	| Value of "n"	 	| Return Address     |
+Frame High @   | Frame Low @    | Function	    | Value of "n"          | Return Address     |
 ---------------+----------------+---------------|-----------------------|--------------------|
-0x7fffffffe7d0 | 0x7fffffffe7b0 | factorial	| 1			| n/a                |
+0x7fffffffe7d0 | 0x7fffffffe7b0 | factorial	    | 1		                | n/a                |
                |                |               |                       |                    |
                |                |               |                       |                    |
                |                |               |                       |                    |
