@@ -17,11 +17,8 @@ Then submit the edited version of this file in myCourses under hw08.
 
 Frame High @   | Frame Low @    | Function	    | Value of "n"          | Return Address     |
 ---------------+----------------+---------------|-----------------------|--------------------|
-0x7fffffffe7d0 | 0x7fffffffe7b0 | factorial	    | 1		                | n/a                |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
+0x7fffffffe920 | 0x7fffffffe900 | factorial	    | 1                     | 0x04005a5          |
+0x7fffffffe950 | 0x7fffffffe930 | factorial     | 2                     | 0x04005a5          |
+0x7fffffffe980 | 0x7fffffffe960 | factorial     | 3                     | 0x04005a5          |
+0x7fffffffe9b0 | 0x7fffffffe970 | factorial     | 4                     | 0x0400564          |
+0x7fffffffe9d0 | 0x7fffffffe9c0 | main          | n/a                   | 0x7ffff7a52b45 or n/a|
