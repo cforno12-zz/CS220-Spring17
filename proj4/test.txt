@@ -1,0 +1,6 @@
+# Use # for comments
+# Use C for text strings to be copied to output
+# Use x for hex data to be copied to output
+#
+# First, need the section ID (A or B)
+C A
