@@ -27,3 +27,4 @@ gdb : grades
 	
 clean:  
 	-rm grades grades.objdump.txt makeHex testhex.txt hack.o hack.objdump.txt
+	rm -r grades.dSYM makeHex.dSYM
